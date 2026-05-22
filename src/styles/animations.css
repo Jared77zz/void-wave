@@ -1,0 +1,143 @@
+/* animations.css - todas las animaciones de Void Wave */
+/* Cada keyframe tiene un comentario de para qué sirve */
+
+/* --- Pulso de glow: hace que un elemento "respire" con luz --- */
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.7;
+    filter: brightness(1.4);
+  }
+}
+
+/* --- Parpadeo tipo terminal: imita el cursor de una consola --- */
+@keyframes terminalBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* --- Scanline: línea que baja como en un monitor viejo --- */
+@keyframes scanline {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* --- Fade + subida: entrada suave de elementos desde abajo --- */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Fade in simple: aparición sin movimiento --- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* --- Glitch horizontal: efecto de distorsión cyberpunk --- */
+@keyframes glitch {
+  0%   { transform: translate(0); }
+  20%  { transform: translate(-3px, 1px); }
+  40%  { transform: translate(3px, -1px); }
+  60%  { transform: translate(-2px, 2px); }
+  80%  { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+/* --- Lyric pop: cuando una letra llega a tiempo, aparece con énfasis --- */
+@keyframes lyricPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.85) translateY(10px);
+  }
+  60% {
+    transform: scale(1.05) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* --- Bar bounce: para las barras del visualizador (suave) --- */
+@keyframes barBounce {
+  0%, 100% { transform: scaleY(0.1); }
+  50%       { transform: scaleY(1); }
+}
+
+/* --- Rotate lento: para elementos decorativos que giran --- */
+@keyframes slowRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ==============================================
+   CLASES UTILITARIAS PARA USAR EN COMPONENTES
+   ============================================== */
+
+/* Aplicar glow pulsante continuo */
+.anim-glow-pulse {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* Cursor tipo terminal (para el logo o titulos) */
+.anim-blink {
+  animation: terminalBlink 1s step-end infinite;
+}
+
+/* Entrada desde abajo al aparecer */
+.anim-fade-up {
+  animation: fadeUp 0.5s ease forwards;
+}
+
+/* Entrada simple sin movimiento */
+.anim-fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+/* Efecto glitch que se activa con hover */
+.anim-glitch:hover {
+  animation: glitch 0.3s ease;
+}
+
+/* Entrada de letra activa */
+.anim-lyric-pop {
+  animation: lyricPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Scanline decorativa (posición absoluta, pointer-events none) */
+.anim-scanline {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.anim-scanline::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* línea fina semitransparente */
+  height: 2px;
+  background: rgba(0, 245, 255, 0.08);
+  animation: scanline 6s linear infinite;
+}
+
+/* Delay helpers para animaciones escalonadas */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }

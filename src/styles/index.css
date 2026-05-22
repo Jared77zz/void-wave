@@ -1,0 +1,5 @@
+/* index.css - punto de entrada de todos los estilos */
+/* Solo importa los otros archivos, no poner estilos aquí */
+
+@import './globals.css';
+@import './animations.css';

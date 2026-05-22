@@ -1,0 +1,200 @@
+/* globals.css - variables y reset base de Void Wave */
+/* Aquí definimos los colores, fuentes y estilos globales */
+
+/* --- Importar fuente terminal/cyberpunk desde Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap');
+
+/* --- Variables globales de color y diseño --- */
+:root {
+  /* Colores base */
+  --void-black:     #020407;
+  --void-dark:      #080d12;
+  --void-surface:   #0d1520;
+
+  /* Colores de acento (neón) */
+  --void-cyan:      #00f5ff;
+  --void-purple:    #b700ff;
+  --void-pink:      #ff006e;
+  --void-green:     #00ff88;
+
+  /* Texto */
+  --void-text:      #c8d8e8;
+  --void-muted:     #3a4a5a;
+  --void-white:     #e8f0f8;
+
+  /* Glow effects */
+  --glow-cyan:      0 0 10px #00f5ff, 0 0 30px #00f5ff40;
+  --glow-purple:    0 0 10px #b700ff, 0 0 30px #b700ff40;
+  --glow-pink:      0 0 10px #ff006e, 0 0 30px #ff006e40;
+
+  /* Fuentes */
+  --font-mono:      'Share Tech Mono', monospace;   /* para texto general */
+  --font-display:   'Orbitron', sans-serif;          /* para títulos y logo */
+
+  /* Espaciado base */
+  --gap-sm:  8px;
+  --gap-md:  16px;
+  --gap-lg:  32px;
+
+  /* Transición estándar */
+  --transition: 0.3s ease;
+}
+
+/* --- Reset mínimo --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Fondo base de la app --- */
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--void-black);
+  color: var(--void-text);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.6;
+  overflow: hidden; /* sin scroll, experiencia fullscreen */
+}
+
+/* --- Contenedor raíz de React --- */
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+/* --- Layout principal de la app --- */
+.void-root {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* --- Capa de fondo (video/imagen) --- */
+.void-bg {
+  position: absolute;
+  inset: 0; /* top/right/bottom/left = 0 */
+  z-index: 0;
+  background: 
+    /* gradiente oscuro encima del video para que el contenido sea legible */
+    linear-gradient(
+      180deg,
+      rgba(2, 4, 7, 0.7) 0%,
+      rgba(2, 4, 7, 0.4) 50%,
+      rgba(2, 4, 7, 0.85) 100%
+    ),
+    /* patrón de rejilla estilo cyberpunk */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 40px,
+      rgba(0, 245, 255, 0.03) 40px,
+      rgba(0, 245, 255, 0.03) 41px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 40px,
+      rgba(0, 245, 255, 0.03) 40px,
+      rgba(0, 245, 255, 0.03) 41px
+    );
+  background-color: var(--void-dark);
+}
+
+/* --- Contenido principal (sobre el fondo) --- */
+.void-main {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--gap-lg);
+  gap: var(--gap-md);
+}
+
+/* --- Header con el logo --- */
+.void-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.3em;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 900;
+}
+
+/* Parte "VOID" del logo */
+.void-logo {
+  color: var(--void-white);
+  text-shadow: var(--glow-cyan);
+}
+
+/* Parte "WAVE" con acento de color */
+.void-logo-accent {
+  color: var(--void-cyan);
+  text-shadow: var(--glow-cyan);
+}
+
+/* --- Zona del visualizador --- */
+.void-visualizer-zone {
+  width: 100%;
+  max-width: 900px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--void-muted);
+  border-radius: 4px;
+}
+
+/* --- Zona de letras --- */
+.void-lyrics-zone {
+  width: 100%;
+  max-width: 700px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Barra de controles inferior --- */
+.void-controls {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: var(--gap-md) var(--gap-lg);
+  border-top: 1px solid var(--void-muted);
+  background: rgba(8, 13, 18, 0.9);
+  backdrop-filter: blur(10px); /* efecto vidrio */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
+}
+
+/* --- Placeholder temporal para zonas vacías --- */
+.void-placeholder {
+  font-family: var(--font-mono);
+  color: var(--void-muted);
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+}
+
+/* --- Scrollbar personalizado (si aparece en algún lado) --- */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--void-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--void-cyan);
+  border-radius: 2px;
+}
