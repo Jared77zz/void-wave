@@ -1,7 +1,6 @@
 // App.tsx - componente raíz de Void Wave
 // Aquí vive el layout principal de toda la app
-
-import './styles/index.css'
+import "./styles/index.css";
 
 function App() {
   return (
